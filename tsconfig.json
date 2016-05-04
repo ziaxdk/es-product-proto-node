@@ -8,6 +8,7 @@
     "files": [
       "./typings/main.d.ts",
       "./app.ts",
-      "./Product.ts"
+      "./Product.ts",
+      "./Rules.ts"
     ]
 }

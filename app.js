@@ -9,21 +9,22 @@ var util_1 = require("util");
 var ES_HOST = '192.168.99.100:9200';
 var p = new Product_1.Product();
 p.ItemNumber = '123';
-p.Output();
+p.Country = "DK";
+console.log(util_1.inspect(p));
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
 var client = new ES.Client({
     host: ES_HOST,
     // log: 'trace'
     log: 'info'
 });
-// client.index({
-// 	index: 'myindex',
-// 	type: 'mytype',
-// 	id: '1',
-// 	body: p
-// }, function(error, response) {
-// 	console.log(arguments);
-// });
+client.index({
+    index: 'myindex',
+    type: 'mytype',
+    id: '1',
+    body: p
+}, function (error, response) {
+    console.log(util_1.inspect(response));
+});
 // client.get({
 // 	index: 'myindex',
 // 	type: 'mytype',
@@ -32,14 +33,14 @@ var client = new ES.Client({
 // 	// console.log(arguments);
 //  	console.log(inspect(response));
 // });
-client.search({
-    index: 'myindex',
-    type: 'mytype',
-    body: {}
-}, function (error, response) {
-    // console.log(arguments);
-    console.log(util_1.inspect(response.hits));
-});
+// client.search({
+//   index: 'myindex',
+//   type: 'mytype',
+//   body: {}
+// }, function(error, response) {
+//   // console.log(arguments);
+//    console.log(inspect(response.hits));
+// });
 // client.ping({
 //   requestTimeout: 30000,
 //   // undocumented params are appended to the query string

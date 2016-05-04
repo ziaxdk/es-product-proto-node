@@ -7,15 +7,15 @@
 
 import * as ES from "elasticsearch";
 
-import { Product } from "./Product";
+import { Product, Countries } from "./Product";
 import { inspect } from "util";
 const ES_HOST: string = '192.168.99.100:9200';
 
 let p = new Product();
 p.ItemNumber = '123';
-p.Output();
+p.Country = "DK";
 
-
+console.log(inspect(p));
 
 
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
@@ -25,14 +25,14 @@ var client = new ES.Client({
   log: 'info'
 });
 
-// client.index({
-// 	index: 'myindex',
-// 	type: 'mytype',
-// 	id: '1',
-// 	body: p
-// }, function(error, response) {
-// 	console.log(arguments);
-// });
+client.index({
+	index: 'myindex',
+	type: 'mytype',
+	id: '1',
+	body: p
+}, function(error, response) {
+	console.log(inspect(response));
+});
 
 // client.get({
 // 	index: 'myindex',
@@ -43,14 +43,14 @@ var client = new ES.Client({
 //  	console.log(inspect(response));
 // });
 
-client.search({
-  index: 'myindex',
-  type: 'mytype',
-  body: {}
-}, function(error, response) {
-  // console.log(arguments);
-   console.log(inspect(response.hits));
-});
+// client.search({
+//   index: 'myindex',
+//   type: 'mytype',
+//   body: {}
+// }, function(error, response) {
+//   // console.log(arguments);
+//    console.log(inspect(response.hits));
+// });
 
 
 
