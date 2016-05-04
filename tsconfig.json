@@ -1,0 +1,13 @@
+{
+	"compileOnSave": true,
+    "compilerOptions": {
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "files": [
+      "./typings/main.d.ts",
+      "./app.ts",
+      "./Product.ts"
+    ]
+}
