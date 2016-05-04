@@ -1,3 +1,12 @@
+# Setup
+
+```
+npm install -g typescript
+npm install -g typings
+npm install
+typings install
+```
+
 # Start
 
 ## Home (Laptop)

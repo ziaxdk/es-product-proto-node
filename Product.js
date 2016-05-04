@@ -8,12 +8,3 @@ var Product = (function () {
     return Product;
 }());
 exports.Product = Product;
-var Product2 = (function () {
-    function Product2() {
-    }
-    Product2.prototype.Output = function () {
-        console.log(this.ItemNumber);
-    };
-    return Product2;
-}());
-exports.Product2 = Product2;
