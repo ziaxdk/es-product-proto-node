@@ -3,23 +3,30 @@
 var Chai = require("chai");
 var ES = require("elasticsearch");
 var Product_1 = require("../src/Product");
-var Config = require("../config.json").test;
+var Config = require("../config.json");
 var INDEX = "test_index";
 var should = Chai.should();
 var client;
 var product = new Product_1.Product();
 product.ItemNumber = "123";
 describe("simple product", function () {
-    before(function () {
+    before(function (done) {
         // // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
         client = new ES.Client({
-            host: Config.es_host,
+            host: Config.test.es_host,
             // log: 'trace'
-            log: 'info'
+            // log: 'info'
+            log: 'error'
+        });
+        client.indices.create({ index: INDEX, body: Config.indices.product }, function (err, res) {
+            done();
         });
     });
-    after(function () {
-        client.close();
+    after(function (done) {
+        client.indices.delete({ index: INDEX }, function (err, res) {
+            client.close();
+            done();
+        });
     });
     //  it("bla", () => {
     //   var foo = 'bar';
@@ -32,11 +39,10 @@ describe("simple product", function () {
     it("should insert a product", function (done) {
         client.index({
             index: INDEX,
-            type: 'Product',
+            type: 'product',
             id: '1',
             body: product
         }, function (err, res) {
-            console.log(res.created);
             res.should.be.a.json;
             res.created.should.be.true;
             done();

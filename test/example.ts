@@ -3,7 +3,7 @@
 import * as Chai from "chai"
 import * as ES from "elasticsearch";
 import { Product, Countries } from "../src/Product";
-const Config = require("../config.json").test;
+const Config = require("../config.json");
 const INDEX = "test_index";
 const should = Chai.should();
 var client;
@@ -12,19 +12,25 @@ product.ItemNumber = "123";
 
 describe("simple product", function() {
 
-	before(function() {
+	before(function(done) {
 		// // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
 		client = new ES.Client({
-			host: Config.es_host,
+			host: Config.test.es_host,
 			// log: 'trace'
-			log: 'info'
+			// log: 'info'
+			log: 'error'
+		});
+		client.indices.create({ index: INDEX, body: Config.indices.product }, function(err, res) {
+			done();
 		});
 	});
 
-	after(function() {
-		client.close();
+	after(function(done) {
+		client.indices.delete({ index: INDEX}, function(err, res) {
+			client.close();
+			done();
+		});
 	});
-
 
  //  it("bla", () => {
 
@@ -40,7 +46,7 @@ describe("simple product", function() {
   it("should insert a product", function(done) {
   	client.index({
   		index: INDEX,
-  		type: 'Product',
+  		type: 'product',
   		id: '1',
 		body: product
 
