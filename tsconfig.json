@@ -9,6 +9,8 @@
       "./typings/main.d.ts",
       "./app.ts",
       "./Product.ts",
-      "./Rules.ts"
+      "./Rules.ts",
+
+      "./test/example.ts"
     ]
 }

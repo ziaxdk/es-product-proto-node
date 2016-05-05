@@ -11,5 +11,8 @@
   "dependencies": {
     "elasticsearch": "^11.0.1",
     "express": "^4.13.4"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0"
   }
 }
