@@ -7,9 +7,9 @@
     ],
     "files": [
       "./typings/main.d.ts",
-      "./app.ts",
-      "./Product.ts",
-      "./Rules.ts",
+      "./src/app.ts",
+      "./src/Product.ts",
+      "./src/Rules.ts",
 
       "./test/example.ts"
     ]
