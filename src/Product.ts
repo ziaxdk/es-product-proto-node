@@ -1,15 +1,17 @@
+import * as Domain from './Market'
 
 export class Product {
-	ItemNumber:string;
-	Country: Countries;
+  itemNumber: string;
+  country: Countries;
+  markets: Domain.Market[];
 
-	constructor() {
-		this.Country = "DK";
-	}
+  constructor() {
+    this.country = "DK";
+  }
 
-	Output() {
-		console.log(this.ItemNumber);
-	}
+  Output() {
+    console.log(this.itemNumber);
+  }
 }
 
 export type Countries = "DK" | "SE";

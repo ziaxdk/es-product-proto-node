@@ -2,47 +2,48 @@
 "use strict";
 var Chai = require("chai");
 var ES = require("elasticsearch");
-var Product_1 = require("../src/Product");
-var Config = require("../config.json");
+var Domain = require('../src/Domain');
+var Config = require("../config.json").test;
 var INDEX = "test_index";
 var should = Chai.should();
 var client;
-var product = new Product_1.Product();
-product.ItemNumber = "123";
 describe("simple product", function () {
     before(function (done) {
         // // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
         client = new ES.Client({
-            host: Config.test.es_host,
+            host: Config.es_host,
             // log: 'trace'
             // log: 'info'
             log: 'error'
         });
         client.indices.create({ index: INDEX, body: Config.indices.product }, function (err, res) {
+            if (err)
+                return done(err);
             done();
         });
     });
     after(function (done) {
         client.indices.delete({ index: INDEX }, function (err, res) {
+            if (err)
+                return done(err);
             client.close();
             done();
         });
     });
-    //  it("bla", () => {
-    //   var foo = 'bar';
-    // var beverages = { tea: ['chai', 'matcha', 'oolong'] };
-    // foo.should.be.a('string');
-    // foo.should.equal('bar');
-    // foo.should.have.length(3);
-    // beverages.should.have.property('tea').with.length(3);
-    //  });
-    it("should insert a product", function (done) {
+    it("should insert a product with itemNumber & country", function (done) {
+        var product = new Domain.Product();
+        product.itemNumber = "123";
+        var market = new Domain.Market();
+        market.name = "TCAS";
+        product.markets = [market];
         client.index({
             index: INDEX,
             type: 'product',
             id: '1',
             body: product
         }, function (err, res) {
+            if (err)
+                return done(err);
             res.should.be.a.json;
             res.created.should.be.true;
             done();

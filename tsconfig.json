@@ -7,10 +7,15 @@
     ],
     "files": [
       "./typings/main.d.ts",
-      "./src/app.ts",
+      "./src/Language.ts",
+      "./src/Market.ts",
       "./src/Product.ts",
+      "./src/Domain.ts",
+      "./src/app.ts",
       "./src/Rules.ts",
+      "./src/Search.ts",
 
-      "./test/example.ts"
+      "./test/Product-tests.ts",
+      "./test/Product-search-tests.ts"
     ]
 }

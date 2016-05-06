@@ -1,22 +1,28 @@
 {
 	"test" : {
-		"es_host" : "http://192.168.99.100:9200"
-	},
-	"indices" : {
-		"product" : {
-			"settings" : {
-		        "number_of_shards" : 1,
-		        "number_of_replicas" : 0
-		    },
-		    "mappings" : {
-		        "type1" : {
-		            "properties" : {
-		                "field1" : { "type" : "string", "index" : "not_analyzed" }
-		            }
-		        }
-		    }
-
-
-		}
-	}
+		"es_host" : "http://192.168.99.100:9200",
+  	"indices" : {
+  		"product" : {
+  			"settings" : {
+          "number_of_shards" : 1,
+          "number_of_replicas" : 0
+  	    },
+  	    "mappings" : {
+          "product" : {
+        	"dynamic": "strict",
+            "properties" : {
+              "itemNumber" : { "type" : "string" },
+              "country" : { "type" : "string" },
+              "markets" : {
+                "type": "object",
+                "properties": {
+                  "name" : { "type" : "string" }
+                }
+              }
+            }
+          }
+  	    }
+  		}
+  	}
+  }
 }

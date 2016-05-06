@@ -1,38 +1,48 @@
-
-// import * as http from "http";
-// import * as net from "net";
-// import * as fs from "fs";
-
 // import * as Express from "express";
 
 import * as ES from "elasticsearch";
+// import Search from "./Search";
+import * as moment from "moment"
 
-import { Product, Countries } from "./Product";
+// import { Product, Countries } from "./Domain";
 import { inspect } from "util";
+import * as Domain from './Domain'
+
+// var s = new Search();
+// var now = moment();
+
+// s.search("TCAS", now);
+
+// Search.search(moment());
+
 const ES_HOST: string = '192.168.99.100:9200';
 
-let p = new Product();
-p.ItemNumber = '123';
-p.Country = "DK";
+let m = new Domain.Market();
+m.name = "TCAS";
+let p = new Domain.Product();
+p.itemNumber = '123';
+p.country = "DK";
+p.markets = [m];
 
 console.log(inspect(p));
+// console.log(p);
 
 
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
-var client = new ES.Client({
-  host: ES_HOST,
-  // log: 'trace'
-  log: 'info'
-});
+// var client = new ES.Client({
+//   host: ES_HOST,
+//   // log: 'trace'
+//   log: 'info'
+// });
 
-client.index({
-	index: 'myindex',
-	type: 'mytype',
-	id: '1',
-	body: p
-}, function(error, response) {
-	console.log(inspect(response));
-});
+// client.index({
+// 	index: 'myindex',
+// 	type: 'mytype',
+// 	id: '1',
+// 	body: p
+// }, function(error, response) {
+// 	console.log(inspect(response));
+// });
 
 // client.get({
 // 	index: 'myindex',
