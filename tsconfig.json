@@ -7,8 +7,6 @@
     ],
     "files": [
       "./typings/main.d.ts",
-      "./src/Language.ts",
-      "./src/Market.ts",
       "./src/Product.ts",
       "./src/Domain.ts",
       "./src/app.ts",

@@ -8,12 +8,9 @@ var Domain = require('./Domain');
 // s.search("TCAS", now);
 // Search.search(moment());
 var ES_HOST = '192.168.99.100:9200';
-var m = new Domain.Market();
-m.name = "TCAS";
 var p = new Domain.Product();
 p.itemNumber = '123';
 p.country = "DK";
-p.markets = [m];
 console.log(util_1.inspect(p));
 // console.log(p);
 // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html

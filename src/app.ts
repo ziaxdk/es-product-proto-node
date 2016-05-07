@@ -17,12 +17,9 @@ import * as Domain from './Domain'
 
 const ES_HOST: string = '192.168.99.100:9200';
 
-let m = new Domain.Market();
-m.name = "TCAS";
 let p = new Domain.Product();
 p.itemNumber = '123';
 p.country = "DK";
-p.markets = [m];
 
 console.log(inspect(p));
 // console.log(p);

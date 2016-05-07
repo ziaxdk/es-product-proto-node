@@ -1,9 +1,7 @@
-import * as Domain from './Market'
-
 export class Product {
   itemNumber: string;
   country: Countries;
-  markets: Domain.Market[];
+  header: string;
 
   constructor() {
     this.country = "DK";

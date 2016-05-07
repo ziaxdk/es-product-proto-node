@@ -22,20 +22,17 @@ describe("simple product", function () {
             done();
         });
     });
-    after(function (done) {
-        client.indices.delete({ index: INDEX }, function (err, res) {
-            if (err)
-                return done(err);
-            client.close();
-            done();
-        });
-    });
+    // after(function(done) {
+    // 	client.indices.delete({ index: INDEX}, function(err, res) {
+    //      if (err) return done(err);
+    //      client.close();
+    // 		done();
+    // 	});
+    // });
     it("should insert a product with itemNumber & country", function (done) {
         var product = new Domain.Product();
         product.itemNumber = "123";
-        var market = new Domain.Market();
-        market.name = "TCAS";
-        product.markets = [market];
+        product.header = "header123";
         client.index({
             index: INDEX,
             type: 'product',

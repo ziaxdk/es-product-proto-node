@@ -13,12 +13,7 @@
             "properties" : {
               "itemNumber" : { "type" : "string" },
               "country" : { "type" : "string" },
-              "markets" : {
-                "type": "object",
-                "properties": {
-                  "name" : { "type" : "string" }
-                }
-              }
+              "header" : { "type" : "string" }
             }
           }
   	    }

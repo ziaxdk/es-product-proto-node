@@ -21,6 +21,7 @@ describe("product search", function () {
                 return done(err);
             var product = new Domain.Product();
             product.itemNumber = "123";
+            product.header = "header123";
             client.index({
                 index: INDEX,
                 type: 'product',
