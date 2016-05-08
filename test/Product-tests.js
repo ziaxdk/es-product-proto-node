@@ -9,7 +9,7 @@ var should = Chai.should();
 var client;
 describe("simple product", function () {
     before(function (done) {
-        _ElasticSearch_helper_1["default"](function (err, client_) {
+        _ElasticSearch_helper_1.default(function (err, client_) {
             client = client_;
             done();
         });

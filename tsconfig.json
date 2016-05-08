@@ -1,6 +1,7 @@
 {
 	"compileOnSave": true,
     "compilerOptions": {
+      "target" : "es5"
     },
     "exclude": [
         "node_modules"
@@ -15,6 +16,7 @@
 
       "./test/_ElasticSearch-helper.ts",
       "./test/Product-tests.ts",
+      "./test/ItemAllow-tests.ts",
       "./test/Product-search-tests.ts",
       "./test/Search-tests.ts"
     ]

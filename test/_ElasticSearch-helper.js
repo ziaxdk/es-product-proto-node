@@ -54,5 +54,5 @@ function _ElasticSearchHelper(done) {
     //   }
     // });
 }
-exports.__esModule = true;
-exports["default"] = _ElasticSearchHelper;
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.default = _ElasticSearchHelper;
