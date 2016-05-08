@@ -9,3 +9,9 @@ var Product = (function () {
     return Product;
 }());
 exports.Product = Product;
+var ItemAllow = (function () {
+    function ItemAllow() {
+    }
+    return ItemAllow;
+}());
+exports.ItemAllow = ItemAllow;

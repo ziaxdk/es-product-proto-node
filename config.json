@@ -13,7 +13,13 @@
             "properties" : {
               "itemNumber" : { "type" : "string" },
               "country" : { "type" : "string" },
-              "header" : { "type" : "string" }
+              "header" : { "type" : "string" },
+              "itemAllows" : {
+                "type" : "object",
+                "properties" : {
+                  "startDate" : { "type" : "date" }
+                }
+              }
             }
           }
   	    }
