@@ -1,41 +1,17 @@
 /// <reference path="../typings/main.d.ts" />
 "use strict";
 var Chai = require("chai");
-var ES = require("elasticsearch");
 var Domain = require('../src/Domain');
+var _ElasticSearch_helper_1 = require('./_ElasticSearch-helper');
 var Config = require("../config.json").test;
 var INDEX = "test_index";
 var should = Chai.should();
 var client;
 describe("simple product", function () {
     before(function (done) {
-        var create = function (done) {
-            client.indices.create({ index: INDEX, body: Config.indices.product }, function (err, res) {
-                if (err)
-                    return done(err);
-                done();
-            });
-        };
-        // // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
-        client = new ES.Client({
-            host: Config.es_host,
-            // log: 'trace'
-            // log: 'info'
-            log: 'error'
-        });
-        client.indices.exists({ index: INDEX }, function (err, res) {
-            if (err)
-                return done(err);
-            if (res) {
-                client.indices.delete({ index: INDEX }, function (err, res) {
-                    if (err)
-                        return done(err);
-                    return create(done);
-                });
-            }
-            else {
-                return create(done);
-            }
+        _ElasticSearch_helper_1["default"](function (err, client_) {
+            client = client_;
+            done();
         });
     });
     it("should insert a product with itemNumber & country", function (done) {

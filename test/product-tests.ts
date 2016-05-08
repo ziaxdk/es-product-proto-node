@@ -3,6 +3,8 @@
 import * as Chai from "chai"
 import * as ES from "elasticsearch";
 import * as Domain from '../src/Domain'
+import client2 from './_ElasticSearch-helper'
+
 const Config = require("../config.json").test;
 const INDEX = "test_index";
 const should = Chai.should();
@@ -11,30 +13,9 @@ var client;
 describe("simple product", function() {
 
 	before(function(done) {
-    var create = function(done) {
-      client.indices.create({ index: INDEX, body: Config.indices.product }, function(err, res) {
-        if (err) return done(err);
-        done();
-      });
-    }
-		// // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
-		client = new ES.Client({
-			host: Config.es_host,
-			// log: 'trace'
-			// log: 'info'
-			log: 'error'
-		});
-
-    client.indices.exists({ index: INDEX }, function(err, res) {
-      if (err) return done(err);
-      if (res) {
-        client.indices.delete({ index: INDEX }, function(err, res) {
-          if (err) return done(err);
-          return create(done);
-        });
-      } else {
-        return create(done);
-      }
+    client2(function(err, client_) {
+      client = client_;
+      done();
     });
 	});
 

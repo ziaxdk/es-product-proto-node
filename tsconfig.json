@@ -13,6 +13,7 @@
       "./src/Rules.ts",
       "./src/Search.ts",
 
+      "./test/_ElasticSearch-helper.ts",
       "./test/Product-tests.ts",
       "./test/Product-search-tests.ts",
       "./test/Search-tests.ts"
