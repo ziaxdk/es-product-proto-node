@@ -14,6 +14,7 @@
       "./src/Search.ts",
 
       "./test/Product-tests.ts",
-      "./test/Product-search-tests.ts"
+      "./test/Product-search-tests.ts",
+      "./test/Search-tests.ts"
     ]
 }

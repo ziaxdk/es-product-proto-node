@@ -1,10 +1,14 @@
-// import * as Product from "./Product";
-// import Markets from "./Market";
+import * as Domain from "./Domain";
 
-// export default class Search {
+export class Search {
 
 
-//   search(market: Markets, ...assortmentDate: moment.Moment[]): void {
-//     console.log('search', market, assortmentDate.length)
-//   }
-// }
+  search(query: SearchQuery): void {
+    console.log('search', query.market, query.assortmentDates && query.assortmentDates.length)
+  }
+}
+
+export class SearchQuery {
+  market: Domain.Markets;
+  assortmentDates: moment.Moment[];
+}

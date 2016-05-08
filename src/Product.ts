@@ -13,3 +13,4 @@ export class Product {
 }
 
 export type Countries = "DK" | "SE";
+export type Markets = "TCAS" | "CONDOR" | "TCUK";
