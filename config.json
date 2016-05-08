@@ -15,7 +15,7 @@
               "country" : { "type" : "string" },
               "header" : { "type" : "string" },
               "itemAllows" : {
-                "type" : "object",
+                "type" : "nested",
                 "properties" : {
                   "startDate" : { "type" : "date" }
                 }

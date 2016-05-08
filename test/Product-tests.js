@@ -9,6 +9,13 @@ var should = Chai.should();
 var client;
 describe("simple product", function () {
     before(function (done) {
+        var create = function (done) {
+            client.indices.create({ index: INDEX, body: Config.indices.product }, function (err, res) {
+                if (err)
+                    return done(err);
+                done();
+            });
+        };
         // // https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference-2-2.html
         client = new ES.Client({
             host: Config.es_host,
@@ -16,19 +23,21 @@ describe("simple product", function () {
             // log: 'info'
             log: 'error'
         });
-        client.indices.create({ index: INDEX, body: Config.indices.product }, function (err, res) {
+        client.indices.exists({ index: INDEX }, function (err, res) {
             if (err)
                 return done(err);
-            done();
+            if (res) {
+                client.indices.delete({ index: INDEX }, function (err, res) {
+                    if (err)
+                        return done(err);
+                    return create(done);
+                });
+            }
+            else {
+                return create(done);
+            }
         });
     });
-    // after(function(done) {
-    // 	client.indices.delete({ index: INDEX}, function(err, res) {
-    //      if (err) return done(err);
-    //      client.close();
-    // 		done();
-    // 	});
-    // });
     it("should insert a product with itemNumber & country", function (done) {
         var product = new Domain.Product();
         product.itemNumber = "123";
