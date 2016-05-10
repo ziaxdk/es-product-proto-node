@@ -8,6 +8,7 @@
     ],
     "files": [
       "./typings/main.d.ts",
+      "es-proto.d.ts",
       "./src/Product.ts",
       "./src/Domain.ts",
       "./src/app.ts",
