@@ -1,23 +1,21 @@
-/// <reference path="../typings/main.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
+/// <reference path="../../es-proto.d.ts" />
 
 import * as Chai from "chai"
 import * as ES from "elasticsearch";
-import * as Domain from '../src/Domain'
-import client2 from './_ElasticSearch-helper'
+import * as Domain from '../../src/Domain'
+import esHelper from './_ElasticSearch-helper'
 
-const Config = require("../config.json").test;
+const Config = require("../../config.json").test;
 const INDEX = "test_index";
 const should = Chai.should();
-var client;
+const _ES = new esHelper();
 
 describe("simple product", function() {
 
-	before(function(done) {
-    client2(function(err, client_) {
-      client = client_;
-      done();
-    });
-	});
+  before(function(done) {
+    _ES.init(done);
+  })
 
 
   it("should insert a product with itemNumber & country", function(done) {
@@ -25,18 +23,11 @@ describe("simple product", function() {
     product.itemNumber = "123";
     product.header = "header123";
 
-  	client.index({
-  		index: INDEX,
-  		type: 'product',
-  		id: '1',
-  		body: product
-  	},
-    function (err, res) {
-			if (err) return done(err);
-		  res.should.be.a.json;
-		  res.created.should.be.true;
-		  done();
-  	});
+    _ES.save(1, product, function(res) {
+      res.should.be.a.json;
+      res.created.should.be.true;
+      done();
+    });
 
   });
 
@@ -49,18 +40,11 @@ describe("simple product", function() {
     itemAllow.startDate = new Date();
     product.itemAllows = [ itemAllow ];
 
-    client.index({
-      index: INDEX,
-      type: 'product',
-      id: '2',
-      body: product
-    },
-      function(err, res) {
-        if (err) return done(err);
+    _ES.save(2, product, function(res) {
         res.should.be.a.json;
         res.created.should.be.true;
         done();
-      });
+    });
 
   });
 

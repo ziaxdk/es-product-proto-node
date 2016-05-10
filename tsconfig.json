@@ -15,10 +15,12 @@
       "./src/Rules.ts",
       "./src/Search.ts",
 
-      "./test/_ElasticSearch-helper.ts",
-      "./test/Product-tests.ts",
       "./test/ItemAllow-tests.ts",
-      "./test/Product-search-tests.ts",
-      "./test/Search-tests.ts"
+
+      "./test/es/_ElasticSearch-helper.ts",
+      "./test/es/Product-tests.ts",
+      "./test/es/Product-search-tests.ts",
+      "./test/es/Search-tests.ts",
+      "./test/es/itemallow-tests.ts"
     ]
 }

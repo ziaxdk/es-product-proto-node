@@ -18,7 +18,9 @@
               "itemAllows" : {
                 "type" : "nested",
                 "properties" : {
-                  "startDate" : { "type" : "date" }
+                  "startDate" : { "type" : "date" },
+                  "allow":  { "type" : "string" },
+                  "disallow":  { "type" : "string" }
                 }
               }
             }

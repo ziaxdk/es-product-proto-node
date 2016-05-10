@@ -1,31 +1,22 @@
-/// <reference path="../typings/main.d.ts" />
+/// <reference path="../../typings/main.d.ts" />
+/// <reference path="../../es-proto.d.ts" />
 "use strict";
 var Chai = require("chai");
-var Domain = require('../src/Domain');
+var Domain = require('../../src/Domain');
 var _ElasticSearch_helper_1 = require('./_ElasticSearch-helper');
-var Config = require("../config.json").test;
+var Config = require("../../config.json").test;
 var INDEX = "test_index";
 var should = Chai.should();
-var client;
+var _ES = new _ElasticSearch_helper_1.default();
 describe("simple product", function () {
     before(function (done) {
-        _ElasticSearch_helper_1.default(function (err, client_) {
-            client = client_;
-            done();
-        });
+        _ES.init(done);
     });
     it("should insert a product with itemNumber & country", function (done) {
         var product = new Domain.Product();
         product.itemNumber = "123";
         product.header = "header123";
-        client.index({
-            index: INDEX,
-            type: 'product',
-            id: '1',
-            body: product
-        }, function (err, res) {
-            if (err)
-                return done(err);
+        _ES.save(1, product, function (res) {
             res.should.be.a.json;
             res.created.should.be.true;
             done();
@@ -38,14 +29,7 @@ describe("simple product", function () {
         var itemAllow = new Domain.ItemAllow();
         itemAllow.startDate = new Date();
         product.itemAllows = [itemAllow];
-        client.index({
-            index: INDEX,
-            type: 'product',
-            id: '2',
-            body: product
-        }, function (err, res) {
-            if (err)
-                return done(err);
+        _ES.save(2, product, function (res) {
             res.should.be.a.json;
             res.created.should.be.true;
             done();

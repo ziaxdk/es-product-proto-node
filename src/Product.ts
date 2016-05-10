@@ -19,32 +19,32 @@ export type Markets = "TCAS" | "CONDOR" | "TCUK";
 
 export class ItemAllow {
   startDate: Date;
-  private Allow: string[];
-  private Disallow: string[];
+  allow: string[];
+  disallow: string[];
 
   constructor() {
-    this.Allow = [];
-    this.Disallow = [];
+    this.allow = [];
+    this.disallow = [];
   }
 
 
   AddAirportAll(target: string, reverse: boolean, allowable: Allowable = Allowable.Allow) {
     var element = reverse ? `*-${target}` : `${target}-*`;
     if (allowable == Allowable.Allow) {
-      this.Allow = this.Allow.concat(element);
+      this.allow = this.allow.concat(element);
     }
     else {
-      this.Disallow = this.Disallow.concat(element);
+      this.disallow = this.disallow.concat(element);
     }
   }
 
   AddAirport(from: string, to: string, allowable: Allowable = Allowable.Allow) {
     var element = `${from}-${to}`;
     if (allowable == Allowable.Allow) {
-      this.Allow = this.Allow.concat(element);
+      this.allow = this.allow.concat(element);
     }
     else {
-      this.Disallow = this.Disallow.concat(element);
+      this.disallow = this.disallow.concat(element);
     }
   }
 
@@ -52,16 +52,16 @@ export class ItemAllow {
     var elementZig = `${from}-${to}`;
     var elementZag = `${to}-${from}`;
     if (allowable == Allowable.Allow) {
-      this.Allow = this.Allow.concat([ elementZig, elementZag ]);
+      this.allow = this.allow.concat([ elementZig, elementZag ]);
     }
     else {
-      this.Disallow = this.Disallow.concat([elementZig, elementZag]);
+      this.disallow = this.disallow.concat([elementZig, elementZag]);
     }
   }
 
-  public get allow(): string[] {
-    return this.Allow;
-  }
+  // public get Allow(): string[] {
+  //   return this.allow;
+  // }
 }
 
 export enum Allowable {
