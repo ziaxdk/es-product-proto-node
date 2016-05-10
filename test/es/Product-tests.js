@@ -3,6 +3,7 @@
 "use strict";
 var Chai = require("chai");
 var Domain = require('../../src/Domain');
+var moment = require('moment');
 var _ElasticSearch_helper_1 = require('./_ElasticSearch-helper');
 var Config = require("../../config.json").test;
 var INDEX = "test_index";
@@ -27,8 +28,8 @@ describe("simple product", function () {
         product.itemNumber = "123";
         product.header = "header123";
         var itemAllow = new Domain.ItemAllow();
-        itemAllow.startDate = new Date();
-        product.itemAllows = [itemAllow];
+        itemAllow.startDate = moment();
+        product.itemAllow = [itemAllow];
         _ES.save(2, product, function (res) {
             res.should.be.a.json;
             res.created.should.be.true;

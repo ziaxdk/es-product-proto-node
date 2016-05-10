@@ -4,6 +4,7 @@
 import * as Chai from "chai"
 import * as ES from "elasticsearch";
 import * as Domain from '../../src/Domain'
+import * as moment from 'moment'
 import esHelper from './_ElasticSearch-helper'
 
 const Config = require("../../config.json").test;
@@ -37,8 +38,8 @@ describe("simple product", function() {
     product.header = "header123";
 
     var itemAllow = new Domain.ItemAllow();
-    itemAllow.startDate = new Date();
-    product.itemAllows = [ itemAllow ];
+    itemAllow.startDate = moment();
+    product.itemAllow = [ itemAllow ];
 
     _ES.save(2, product, function(res) {
         res.should.be.a.json;

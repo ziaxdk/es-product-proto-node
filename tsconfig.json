@@ -9,6 +9,7 @@
     "files": [
       "./typings/main.d.ts",
       "es-proto.d.ts",
+      "./src/Config.ts",
       "./src/Product.ts",
       "./src/Domain.ts",
       "./src/app.ts",
@@ -16,10 +17,10 @@
       "./src/Search.ts",
 
       "./test/ItemAllow-tests.ts",
+      "./test/Search-tests.ts",
 
       "./test/es/_ElasticSearch-helper.ts",
       "./test/es/Product-tests.ts",
-      "./test/es/Product-search-tests.ts",
       "./test/es/Search-tests.ts",
       "./test/es/itemallow-tests.ts"
     ]

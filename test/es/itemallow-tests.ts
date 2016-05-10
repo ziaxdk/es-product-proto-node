@@ -2,6 +2,7 @@
 /// <reference path="../../es-proto.d.ts" />
 
 import * as Chai from "chai"
+import * as moment from 'moment'
 import * as ES from "elasticsearch";
 import * as Domain from '../../src/Domain'
 import esHelper from './_ElasticSearch-helper'
@@ -23,8 +24,8 @@ describe("simple product", function() {
     product.header = "header123";
 
     var itemAllow = new Domain.ItemAllow();
-    itemAllow.startDate = new Date();
-    product.itemAllows = [ itemAllow ];
+    itemAllow.startDate = moment();
+    product.itemAllow = [ itemAllow ];
 
 
     _ES.save(2, product, function(res) {
@@ -35,6 +36,8 @@ describe("simple product", function() {
 
 
   });
+
+
 
 });
 

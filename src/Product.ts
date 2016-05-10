@@ -1,11 +1,14 @@
+import * as moment from 'moment'
+
 export class Product {
   itemNumber: string;
   country: Countries;
   header: string;
-  itemAllows: ItemAllow[];
+  itemAllow: ItemAllow[];
 
   constructor() {
     this.country = "DK";
+    this.itemAllow = [];
   }
 
   Output() {
@@ -18,7 +21,7 @@ export type Markets = "TCAS" | "CONDOR" | "TCUK";
 
 
 export class ItemAllow {
-  startDate: Date;
+  startDate: moment.Moment;
   allow: string[];
   disallow: string[];
 
@@ -30,6 +33,7 @@ export class ItemAllow {
 
   AddAirportAll(target: string, reverse: boolean, allowable: Allowable = Allowable.Allow) {
     var element = reverse ? `*-${target}` : `${target}-*`;
+    
     if (allowable == Allowable.Allow) {
       this.allow = this.allow.concat(element);
     }

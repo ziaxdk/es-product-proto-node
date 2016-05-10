@@ -14,11 +14,12 @@ var ElasticSearchHelper = (function () {
     }
     ElasticSearchHelper.prototype.init = function (done) {
         Async.waterfall([Async.apply(this.exists, this.client), this.delete_, this.create], function (err, res) {
+            if (err)
+                throw err;
             done();
         });
     };
     ElasticSearchHelper.prototype.exists = function (client, done) {
-        // console.log('running exists', this);
         client.indices.exists({ index: Config.index }, function (err, res) {
             if (err)
                 return done(err);
@@ -41,7 +42,7 @@ var ElasticSearchHelper = (function () {
         client.indices.create({ index: Config.index, body: Config.indices.product }, function (err, res) {
             if (err)
                 return done(err);
-            done(null);
+            done();
         });
     };
     ElasticSearchHelper.prototype.save = function (id, document, done) {

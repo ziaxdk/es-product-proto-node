@@ -2,6 +2,7 @@
 var Product = (function () {
     function Product() {
         this.country = "DK";
+        this.itemAllow = [];
     }
     Product.prototype.Output = function () {
         console.log(this.itemNumber);

@@ -19,13 +19,13 @@ export default class ElasticSearchHelper {
 
   init(done: any) {
     Async.waterfall([ Async.apply(this.exists, this.client), this.delete_, this.create], (err, res) => {
+      if (err) throw err;
       done();
     });
   }
 
 
   private exists(client, done) {
-    // console.log('running exists', this);
     client.indices.exists({ index: Config.index }, (err, res) => {
       if (err) return done(err);
       done(null, res, client);
@@ -45,7 +45,7 @@ export default class ElasticSearchHelper {
     // console.log('running create');
     client.indices.create({ index: Config.index, body: Config.indices.product }, (err, res) => {
       if (err) return done(err);
-      done(null);
+      done();
     });
   }
 
